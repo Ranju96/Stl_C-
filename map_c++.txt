@@ -1,0 +1,40 @@
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <iostream>
+#include<map>
+
+using namespace std;
+
+int main()
+{
+    map<int,string>m;
+    m[1]="Ranju";
+    m[13]="maurya";
+    m[3]="susheel";
+    
+    m.insert({5,"bheem"});
+    
+  cout<<"before erase"<<endl; 
+    
+    for(auto i:m)
+    {
+        cout<<i.first<<" "<<i.second<< endl;
+    }
+    cout<<"finding 13->"<<m.count(14)<<endl;
+     
+    
+    m.erase(13);
+    cout<<"after erase"<<endl;
+    for(auto i:m){
+        cout<<i.first<<" "<<i.second<<endl;
+    }
+    
+    
+    return 0;
+}

@@ -1,0 +1,98 @@
+/******************************************************************************
+
+                            Online C Compiler.
+                Code, Compile, Run and Debug C program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <stdio.h>
+#include<stdlib.h>
+
+struct Node{
+    
+    int data;
+    struct Node* left;
+    struct Node* right;
+};
+
+struct Node* createNode(int data) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = data;
+    newNode->left = NULL;
+    newNode->right = NULL;
+    return newNode;
+}
+
+struct Node* insert(struct Node* root, int data){
+    if(root == NULL){
+        return createNode(data);
+    }
+    if(data<root->data){
+        root->left = insert(root->left,data);
+    }
+    else if(data>root->data){
+        root->right = insert(root->right,data);
+    }
+    return root;
+}
+
+void inorderTraversal(struct Node* root){
+    if(root != NULL){
+        inorderTraversal(root->left);
+        printf("%d\t",root->data);
+        inorderTraversal(root->right);
+    }
+}
+
+void preorderTraversal(struct Node* root){
+    if(root != NULL){
+      
+        printf("%d\t",root->data);
+        preorderTraversal(root->left);
+        preorderTraversal(root->right);
+    }
+}
+
+
+void postorderTraversal(struct Node* root){
+    if(root != NULL){
+        postorderTraversal(root->left);
+        postorderTraversal(root->right);
+        printf("%d\t",root->data);
+        
+    }
+}
+int main()
+{
+    struct Node* root=NULL;
+    
+    root = insert(root, 8);
+    root = insert(root, 9);
+    root = insert(root, 6);
+    root = insert(root, 7);
+    root = insert(root, 4);
+    root = insert(root, 5);
+    root = insert(root, 2);
+    root = insert(root, 3);
+    root = insert(root, 1);
+    
+    printf("postorder Traversal->: ");
+    postorderTraversal(root);
+    printf("\n");
+    
+    
+    printf("Inorder Traversal->: ");
+    inorderTraversal(root);
+    printf("\n");
+    
+    printf("preorder Traversal->: ");
+    preorderTraversal(root);
+    printf("\n");
+    
+    
+    
+    
+
+    return 0;
+}
